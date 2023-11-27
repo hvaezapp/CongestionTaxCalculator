@@ -2,7 +2,7 @@
 
 namespace CongestionTaxCalculator.Application.Contracts.Persistence
 {
-    public interface IVehicleRepository : IGenericRepository<Vehicle>
+    public interface IVehicleRepository : IGenericRepository<Vehicle> , IDapperRepository<Vehicle>
     {
 
     }

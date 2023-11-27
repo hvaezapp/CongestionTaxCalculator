@@ -12,13 +12,13 @@ namespace CongestionTaxCalculator.Application.Contracts.Persistence
         Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> where, CancellationToken cancellationToken);
 
 
-        Task<IEnumerable<T>> GetAllAsyncWithSkip(Expression<Func<T, bool>> where, int skip , int take ,  CancellationToken cancellationToken);
+        Task<IEnumerable<T>> GetAllAsyncWithPaging(Expression<Func<T, bool>> where, int skip , int take ,  CancellationToken cancellationToken);
 
 
-       Task<IEnumerable<T>> GetAllAsyncWithSkip(int skip, int take, CancellationToken cancellationToken);
+       Task<IEnumerable<T>> GetAllAsyncWithPaging(int skip, int take, CancellationToken cancellationToken);
 
 
-        Task<IEnumerable<T>> GetAllAsyncWithSkip(Expression<Func<T, bool>> where, int skip, int take , string join ,  CancellationToken cancellationToken);
+        Task<IEnumerable<T>> GetAllAsyncWithPaging(Expression<Func<T, bool>> where, int skip, int take , string join ,  CancellationToken cancellationToken);
 
 
 

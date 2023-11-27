@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CongestionTaxCalculator.Application.Contracts.Persistence;
+using CongestionTaxCalculator.Application.DTOs.City;
 using CongestionTaxCalculator.Application.DTOs.Vehicle;
 using CongestionTaxCalculator.Application.Features.City.Requests.Queries;
 using CongestionTaxCalculator.Application.Features.Vehicle.Requests.Queries;
@@ -47,11 +48,29 @@ namespace CongestionTaxCalculator.Application.Features.Vehicle.Handlers.Queries
                 int skip = (request.Page - 1) * take;
 
 
-                var vehicles = await _vehicleRepository.GetAllAsyncWithSkip(skip , take , cancellationToken);
+
+
+                if (_cache.TryGetValue(VehicleListCacheKey, out IEnumerable<Domain.Entity.Vehicle> vehicles))
+                {
+
+                }
+                else
+                {
+                    // Read From Dapper
+
+                    vehicles = await _vehicleRepository.GetAllWithPagingWithDapper(skip, take, cancellationToken);
+
+
+                    // Read From EF
+                    //vehicles = await _vehicleRepository.GetAllAsyncWithSkip(skip, take, cancellationToken);
+
+                    _cache.Set(VehicleListCacheKey, vehicles, TimeSpan.FromSeconds(60));
+                }
+
 
                 var data = _mapper.Map<List<VehicleDto>>(vehicles);
 
-                response.Success(data: data , page:request.Page);
+                response.Success(data: data, page: request.Page);
 
 
             }
@@ -64,23 +83,6 @@ namespace CongestionTaxCalculator.Application.Features.Vehicle.Handlers.Queries
             return response;
 
 
-
-            //if (_cache.TryGetValue(categoryListCacheKey, out List<Domain.Entity.Category> categories))
-            //{
-            //    //categories = cashedCategories.Skip(skip).Take(DefaultConst.TakeCount).ToList();
-            //    //categories = cashedCategories;
-            //}
-            //else
-            //{
-
-            //    categories = await _categoryRepository.GetCategories(skip, DefaultConst.TakeCount);
-
-
-            //    _cache.Set(categoryListCacheKey, categories, TimeSpan.FromSeconds(60));
-            //}
-
-
-            //return _mapper.Map<List<CategoryDto>>(categories);
         }
     }
 }

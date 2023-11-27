@@ -51,7 +51,7 @@ namespace CongestionTaxCalculator.Application.Features.Holiday.Handlers.Queries
                 }
                 else
                 {
-                    holidays = await _holidayRepository.GetAllAsyncWithSkip(null, skip, take, cancellationToken);
+                    holidays = await _holidayRepository.GetAllAsyncWithPaging(null, skip, take, cancellationToken);
 
                     _cache.Set(HolidayListCacheKey, holidays, TimeSpan.FromSeconds(60));
                 }

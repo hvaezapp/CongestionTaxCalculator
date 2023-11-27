@@ -53,7 +53,7 @@ namespace CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Hand
                 }
                 else
                 {
-                    congestionTaxHistories = await _congestionTaxHistoryRepository.GetAllAsyncWithSkip(null, skip, take, "City,Vehicle", cancellationToken);
+                    congestionTaxHistories = await _congestionTaxHistoryRepository.GetAllAsyncWithPaging(null, skip, take, "City,Vehicle", cancellationToken);
 
                     _cache.Set(CongestionTaxHistoryListCacheKey, congestionTaxHistories, TimeSpan.FromSeconds(60));
                 }

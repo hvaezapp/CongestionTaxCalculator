@@ -51,7 +51,7 @@ namespace CongestionTaxCalculator.Application.Features.TaxExemptVehicles.Handler
                 }
                 else
                 {
-                    taxExemptVehicles = await _taxExemptVehiclesRepository.GetAllAsyncWithSkip(null, skip, take, "City,Vehicle", cancellationToken);
+                    taxExemptVehicles = await _taxExemptVehiclesRepository.GetAllAsyncWithPaging(null, skip, take, "City,Vehicle", cancellationToken);
 
                     _cache.Set(TaxExemptVehiclesListCacheKey, taxExemptVehicles, TimeSpan.FromSeconds(60));
                 }

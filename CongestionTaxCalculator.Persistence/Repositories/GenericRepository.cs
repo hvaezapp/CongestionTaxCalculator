@@ -20,32 +20,64 @@ namespace CongestionTaxCalculator.Persistence.Repositories
 
         public virtual async Task<T> Create(T entity, CancellationToken cancellationToken)
         {
-            await _table.AddAsync(entity, cancellationToken);
-            return entity;
+            try
+            {
+                await _table.AddAsync(entity, cancellationToken);
+                return entity;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public virtual async Task Update(T entity)
         {
-            if (_context.Entry(entity).State == EntityState.Detached)
+            try
             {
-                _table.Attach(entity);
+                if (_context.Entry(entity).State == EntityState.Detached)
+                {
+                    _table.Attach(entity);
+                }
+                _context.Entry(entity).State = EntityState.Modified;
             }
-            _context.Entry(entity).State = EntityState.Modified;
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public virtual async Task Delete(T entity)
         {
-            if (_context.Entry(entity).State == EntityState.Detached)
+            try
             {
-                _table.Attach(entity);
-            }
-            _table.Remove(entity);
+                if (_context.Entry(entity).State == EntityState.Detached)
+                {
+                    _table.Attach(entity);
+                }
+                _table.Remove(entity);
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public virtual async Task<T> GetByIdAsync(object Id, CancellationToken cancellationToken)
         {
-            return await _table.FindAsync(Id, cancellationToken);
+            try
+            {
+                return await _table.FindAsync(Id, cancellationToken);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> where, CancellationToken cancellationToken)
@@ -53,7 +85,7 @@ namespace CongestionTaxCalculator.Persistence.Repositories
             return await _table.Where(where).AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsyncWithSkip(Expression<Func<T, bool>> where , int skip , int take ,  CancellationToken cancellationToken)
+        public async Task<IEnumerable<T>> GetAllAsyncWithPaging(Expression<Func<T, bool>> where , int skip , int take ,  CancellationToken cancellationToken)
         {
 
             IQueryable<T> query = _table;
@@ -69,7 +101,7 @@ namespace CongestionTaxCalculator.Persistence.Repositories
             //return await _table.Where(where).AsNoTracking().Skip(skip).Take(take).ToListAsync(cancellationToken);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsyncWithSkip(Expression<Func<T, bool>> where, int skip, int take, string join , CancellationToken cancellationToken)
+        public async Task<IEnumerable<T>> GetAllAsyncWithPaging(Expression<Func<T, bool>> where, int skip, int take, string join , CancellationToken cancellationToken)
         {
             IQueryable<T> query = _table;
 
@@ -92,7 +124,7 @@ namespace CongestionTaxCalculator.Persistence.Repositories
         }
 
 
-        public async Task<IEnumerable<T>> GetAllAsyncWithSkip(int skip, int take, CancellationToken cancellationToken)
+        public async Task<IEnumerable<T>> GetAllAsyncWithPaging(int skip, int take, CancellationToken cancellationToken)
         {
             return await _table.AsNoTracking().Skip(skip).Take(take).ToListAsync(cancellationToken);
         }

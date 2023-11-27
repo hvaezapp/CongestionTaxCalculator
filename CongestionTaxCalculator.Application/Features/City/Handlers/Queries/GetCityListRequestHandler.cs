@@ -47,6 +47,8 @@ namespace CongestionTaxCalculator.Application.Features.City.Handlers.Queries
                 int skip = (request.Page - 1) * take;
 
 
+                
+
                 if (_cache.TryGetValue(CityListCacheKey, out IEnumerable<Domain.Entity.City> cities))
                 {
                   
@@ -54,7 +56,12 @@ namespace CongestionTaxCalculator.Application.Features.City.Handlers.Queries
                 else
                 {
 
-                    cities = await _cityRepository.GetAllAsyncWithSkip(skip, take, cancellationToken);
+                    // Read From Dapper
+                    cities = await _cityRepository.GetAllWithPagingWithDapper(skip, take, cancellationToken);
+
+
+                    // Read From EF
+                    //cities = await _cityRepository.GetAllAsyncWithSkip(skip, take, cancellationToken);
                     _cache.Set(CityListCacheKey, cities, TimeSpan.FromSeconds(60));
                 }
 
