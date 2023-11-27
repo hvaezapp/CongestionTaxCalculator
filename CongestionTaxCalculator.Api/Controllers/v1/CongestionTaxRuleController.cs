@@ -18,7 +18,7 @@ namespace CongestionTaxCalculator.Api.Controllers.v1
         }
 
 
-        // GET: api/<CityController>
+        // GET: api/<CongestionTaxRuleController>
         [HttpGet("[action]")]
         public async Task<ActionResult<BaseCommandResponse>> GetByCityId(int id = 1)
         {
@@ -28,7 +28,7 @@ namespace CongestionTaxCalculator.Api.Controllers.v1
         }
 
 
-        // POST api/<CityController>
+        // POST api/<CongestionTaxRuleController>
         [HttpPost("[action]")]
         public async Task<ActionResult<BaseCommandResponse>> Create([FromBody] CreateCongestionTaxRuleDto createCongestionTaxRuleDto)
         {

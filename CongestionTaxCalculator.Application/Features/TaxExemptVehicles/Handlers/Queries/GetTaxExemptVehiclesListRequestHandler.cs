@@ -1,23 +1,15 @@
 ﻿using AutoMapper;
 using CongestionTaxCalculator.Application.Contracts.Persistence;
-using CongestionTaxCalculator.Application.DTOs.City;
 using CongestionTaxCalculator.Application.DTOs.TaxExemptVehicles;
-using CongestionTaxCalculator.Application.Features.City.Requests.Queries;
 using CongestionTaxCalculator.Application.Features.TaxExemptVehicles.Requests.Queries;
 using CongestionTaxCalculator.Application.Responses;
-using CongestionTaxCalculator.Domain.Entity;
 using CongestionTaxCalculator.Infrastructure.Const;
 using MediatR;
 using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CongestionTaxCalculator.Application.Features.TaxExemptVehicles.Handlers.Queries
 {
-    public class GetTaxExemptVehiclesListRequestHandler : IRequestHandler<GetTaxExemptVehiclesListRequest , BaseCommandResponse>
+    public class GetTaxExemptVehiclesListRequestHandler : IRequestHandler<GetTaxExemptVehiclesListRequest, BaseCommandResponse>
     {
 
         private const string TaxExemptVehiclesListCacheKey = "TaxExemptVehiclesList";
@@ -52,7 +44,18 @@ namespace CongestionTaxCalculator.Application.Features.TaxExemptVehicles.Handler
                 int skip = (request.Page - 1) * take;
 
 
-                var taxExemptVehicles = await _taxExemptVehiclesRepository.GetAllAsyncWithSkip(null, skip, take , "City,Vehicle" ,  cancellationToken);
+
+                if (_cache.TryGetValue(TaxExemptVehiclesListCacheKey, out IEnumerable<Domain.Entity.TaxExemptVehicles> taxExemptVehicles))
+                {
+
+                }
+                else
+                {
+                    taxExemptVehicles = await _taxExemptVehiclesRepository.GetAllAsyncWithSkip(null, skip, take, "City,Vehicle", cancellationToken);
+
+                    _cache.Set(TaxExemptVehiclesListCacheKey, taxExemptVehicles, TimeSpan.FromSeconds(60));
+                }
+
 
                 var data = _mapper.Map<List<TaxExemptVehiclesDto>>(taxExemptVehicles);
 

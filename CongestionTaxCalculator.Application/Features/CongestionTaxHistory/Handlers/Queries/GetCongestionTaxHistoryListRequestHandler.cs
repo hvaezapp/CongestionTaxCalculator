@@ -17,7 +17,7 @@ namespace CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Hand
 {
     public class GetCongestionTaxHistoryListRequestHandler : IRequestHandler<GetCongestionTaxHistoryListRequest, BaseCommandResponse>
     {
-        private const string CongestionListCacheKey = "CongestionList";
+        private const string CongestionTaxHistoryListCacheKey = "CongestionTaxHistoryListCacheKey";
 
         private readonly ICongestionTaxHistoryRepository _congestionTaxHistoryRepository;
         private readonly IMapper _mapper;
@@ -46,7 +46,18 @@ namespace CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Hand
                 int skip = (request.Page - 1) * take;
 
 
-                var congestionTaxHistories = await _congestionTaxHistoryRepository.GetAllAsyncWithSkip(null, skip, take, "City,Vehicle", cancellationToken);
+
+                if (_cache.TryGetValue(CongestionTaxHistoryListCacheKey, out IEnumerable<Domain.Entity.CongestionTaxHistory> congestionTaxHistories))
+                {
+
+                }
+                else
+                {
+                    congestionTaxHistories = await _congestionTaxHistoryRepository.GetAllAsyncWithSkip(null, skip, take, "City,Vehicle", cancellationToken);
+
+                    _cache.Set(CongestionTaxHistoryListCacheKey, congestionTaxHistories, TimeSpan.FromSeconds(60));
+                }
+
 
                 var data = _mapper.Map<List<GetCongestionTaxHistoryDto>>(congestionTaxHistories);
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CongestionTaxCalculator.Application.Contracts.Persistence;
+using CongestionTaxCalculator.Application.DTOs.CongestionTaxHistory;
 using CongestionTaxCalculator.Application.DTOs.Holiday;
 using CongestionTaxCalculator.Application.Features.Holiday.Requests.Queries;
 using CongestionTaxCalculator.Application.Responses;
@@ -44,11 +45,22 @@ namespace CongestionTaxCalculator.Application.Features.Holiday.Handlers.Queries
                 int skip = (request.Page - 1) * take;
 
 
-                var holidays = await _holidayRepository.GetAllAsyncWithSkip(null, skip, take, cancellationToken);
+                if (_cache.TryGetValue(HolidayListCacheKey, out IEnumerable<Domain.Entity.Holiday> holidays))
+                {
+
+                }
+                else
+                {
+                    holidays = await _holidayRepository.GetAllAsyncWithSkip(null, skip, take, cancellationToken);
+
+                    _cache.Set(HolidayListCacheKey, holidays, TimeSpan.FromSeconds(60));
+                }
+
 
                 var data = _mapper.Map<List<HolidayDto>>(holidays);
 
                 response.Success(data: data, page: request.Page);
+
 
 
             }

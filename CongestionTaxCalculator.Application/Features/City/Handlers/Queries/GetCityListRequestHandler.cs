@@ -36,6 +36,8 @@ namespace CongestionTaxCalculator.Application.Features.City.Handlers.Queries
 
             try
             {
+                
+
                 // paging
                 if (request.Page < 1)
                     request.Page = 1;
@@ -45,10 +47,18 @@ namespace CongestionTaxCalculator.Application.Features.City.Handlers.Queries
                 int skip = (request.Page - 1) * take;
 
 
-                var cities = await _cityRepository.GetAllAsyncWithSkip(skip, take, cancellationToken);
+                if (_cache.TryGetValue(CityListCacheKey, out IEnumerable<Domain.Entity.City> cities))
+                {
+                  
+                }
+                else
+                {
+
+                    cities = await _cityRepository.GetAllAsyncWithSkip(skip, take, cancellationToken);
+                    _cache.Set(CityListCacheKey, cities, TimeSpan.FromSeconds(60));
+                }
 
                 var data = _mapper.Map<List<CityDto>>(cities);
-
                 response.Success(data: data, page: request.Page);
 
 
@@ -63,22 +73,7 @@ namespace CongestionTaxCalculator.Application.Features.City.Handlers.Queries
 
 
 
-            //if (_cache.TryGetValue(categoryListCacheKey, out List<Domain.Entity.Category> categories))
-            //{
-            //    //categories = cashedCategories.Skip(skip).Take(DefaultConst.TakeCount).ToList();
-            //    //categories = cashedCategories;
-            //}
-            //else
-            //{
-
-            //    categories = await _categoryRepository.GetCategories(skip, DefaultConst.TakeCount);
-
-
-            //    _cache.Set(categoryListCacheKey, categories, TimeSpan.FromSeconds(60));
-            //}
-
-
-            //return _mapper.Map<List<CategoryDto>>(categories);
+        
         }
     }
 }

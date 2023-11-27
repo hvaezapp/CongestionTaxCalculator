@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C8C6A44C-9856-4EE4-B43A-02D1523090AF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A09CF2C1-0142-4D99-A25F-D1BE438336C8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{DEE5CA8B-CF4C-4C07-8C36-69C3BDDCDCAE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3CE7265C-EBDB-47DE-AEE4-A7559095E1FD}"
@@ -17,13 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CongestionTaxCalculator.App
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CongestionTaxCalculator.Domain", "CongestionTaxCalculator.Domain\CongestionTaxCalculator.Domain.csproj", "{2DFA855E-90B5-446F-A593-721D11243D04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CongestionTaxCalculator.Infrastructure", "CongestionTaxCalculator.Infrastructure\CongestionTaxCalculator.Infrastructure.csproj", "{E69CCC03-52AF-497D-AA0A-52A6003CE02F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CongestionTaxCalculator.Infrastructure", "CongestionTaxCalculator.Infrastructure\CongestionTaxCalculator.Infrastructure.csproj", "{E69CCC03-52AF-497D-AA0A-52A6003CE02F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CongestionTaxCalculator.Persistence", "CongestionTaxCalculator.Persistence\CongestionTaxCalculator.Persistence.csproj", "{BD1CDBE1-5AF9-474B-8544-489C969A083B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CongestionTaxCalculator.Persistence", "CongestionTaxCalculator.Persistence\CongestionTaxCalculator.Persistence.csproj", "{BD1CDBE1-5AF9-474B-8544-489C969A083B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CongestionTaxCalculator.Identity", "CongestionTaxCalculator.Identity\CongestionTaxCalculator.Identity.csproj", "{A740C071-B53B-4244-9B18-495AC315C1BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CongestionTaxCalculator.Identity", "CongestionTaxCalculator.Identity\CongestionTaxCalculator.Identity.csproj", "{A740C071-B53B-4244-9B18-495AC315C1BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CongestionTaxCalculator.Api", "CongestionTaxCalculator.Api\CongestionTaxCalculator.Api.csproj", "{ABB6C236-8094-4504-9627-01FEE1B737B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CongestionTaxCalculator.Api", "CongestionTaxCalculator.Api\CongestionTaxCalculator.Api.csproj", "{ABB6C236-8094-4504-9627-01FEE1B737B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
