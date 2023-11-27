@@ -1,6 +1,7 @@
 ﻿using CongestionTaxCalculator.Application.DTOs.CongestionTaxHistory;
+using CongestionTaxCalculator.Application.Features.City.Requests.Queries;
+using CongestionTaxCalculator.Application.Features.CongestionTaxCal.Requests.Queries;
 using CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Requests.Commands;
-using CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Requests.Queries;
 using CongestionTaxCalculator.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
