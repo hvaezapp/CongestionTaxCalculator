@@ -1,4 +1,3 @@
 # CongestionTaxCalculator
 
-Designed By AspCore
 
