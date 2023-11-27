@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CongestionTaxCalculator.Application.Features.CongestionTaxCal.Requests.Queries
+namespace CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Requests.Queries
 {
     public class GetCongestionTaxHistoryListRequest : IRequest<BaseCommandResponse>
     {
