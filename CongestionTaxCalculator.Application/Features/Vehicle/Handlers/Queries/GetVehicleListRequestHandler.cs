@@ -8,7 +8,8 @@ using CongestionTaxCalculator.Application.Responses;
 using CongestionTaxCalculator.Infrastructure.Const;
 using MediatR;
 using Microsoft.Extensions.Caching.Memory;
-
+using System.Security.Cryptography.X509Certificates;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CongestionTaxCalculator.Application.Features.Vehicle.Handlers.Queries
 {
@@ -68,15 +69,22 @@ namespace CongestionTaxCalculator.Application.Features.Vehicle.Handlers.Queries
                 }
 
 
-                var data = _mapper.Map<List<VehicleDto>>(vehicles);
+                var vehicleDtos = _mapper.Map<List<VehicleDto>>(vehicles);
 
-                response.Success(data: data, page: request.Page);
+
+                var data = new GetVihicleListWithPagingDto
+                {
+                    vehicles = vehicleDtos,
+                    page = request.Page,
+                };
+
+                response.Success(data: data);
 
 
             }
             catch (Exception ex)
             {
-                response.Failure(message : ex.Message , page: request.Page);
+                response.Failure(message : ex.Message);
             }
 
 

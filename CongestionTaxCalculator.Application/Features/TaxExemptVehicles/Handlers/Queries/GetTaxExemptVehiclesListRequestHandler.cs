@@ -57,15 +57,22 @@ namespace CongestionTaxCalculator.Application.Features.TaxExemptVehicles.Handler
                 }
 
 
-                var data = _mapper.Map<List<TaxExemptVehiclesDto>>(taxExemptVehicles);
+                var taxExemptVehiclesDtos = _mapper.Map<List<TaxExemptVehiclesDto>>(taxExemptVehicles);
 
-                response.Success(data: data, page: request.Page);
+
+                var data = new GetTaxExemptVehicleListWithPagingDto
+                {
+                    taxExemptVehicles = taxExemptVehiclesDtos,
+                    page = request.Page,
+                };
+
+                response.Success(data: data);
 
 
             }
             catch (Exception ex)
             {
-                response.Failure(message: ex.Message, page: request.Page);
+                response.Failure(message: ex.Message);
             }
 
 

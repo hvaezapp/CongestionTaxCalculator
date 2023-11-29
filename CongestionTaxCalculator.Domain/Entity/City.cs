@@ -1,4 +1,5 @@
 ﻿using CongestionTaxCalculator.Domain.Common;
+using CongestionTaxCalculator.Infrastructure.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace CongestionTaxCalculator.Domain.Entity
@@ -26,16 +27,23 @@ namespace CongestionTaxCalculator.Domain.Entity
         public CurrencyType CurrencyType { get; set; }
 
 
+        public ICollection<CongestionTaxHistory> congestionTaxHistories { get; set; }
+        public ICollection<CongestionTaxRule>  congestionTaxRules { get; set; }
+
+        public ICollection<TaxExemptVehicles> taxExemptVehicles { get; set; }
+
         public City()
         {
-
+            congestionTaxHistories = new List<CongestionTaxHistory>(); 
+            congestionTaxRules = new List<CongestionTaxRule>();
+            taxExemptVehicles = new List<TaxExemptVehicles>();
         }
 
         public City(string name, bool isTaxChargedInDuringFixedHours,
             bool isSingleChargeRule, bool isAvailableInWeekend,
             bool isAvailableInHoliday , bool isAvailableInBeforeHoliday ,
             bool isAvailableInDuringJuly , double maxTaxAmountPerDay ,
-             CurrencyType currencyType)
+             CurrencyType currencyType):this()
         {
             Name = name;
             IsTaxChargedInDuringFixedHours = isTaxChargedInDuringFixedHours;
@@ -77,15 +85,5 @@ namespace CongestionTaxCalculator.Domain.Entity
 
     }
 
-    public enum CurrencyType
-    {
-        [Display(Name = "SEK")]
-        SEK,
-        [Display(Name = "EURO")]
-        EURO,
-        [Display(Name = "DOLLAR")]
-        DOLLAR,
-        [Display(Name = "LIR")]
-        LIR
-    }
+   
 }

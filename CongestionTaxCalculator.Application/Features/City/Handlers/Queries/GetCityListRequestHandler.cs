@@ -65,14 +65,23 @@ namespace CongestionTaxCalculator.Application.Features.City.Handlers.Queries
                     _cache.Set(CityListCacheKey, cities, TimeSpan.FromSeconds(60));
                 }
 
-                var data = _mapper.Map<List<CityDto>>(cities);
-                response.Success(data: data, page: request.Page);
+                var cityDtos = _mapper.Map<List<CityDto>>(cities);
+
+
+                var data = new GetCityListWithPagingDto
+                {
+                    cities = cityDtos,
+                    page = request.Page,
+                };
+
+
+                response.Success(data: data);
 
 
             }
             catch (Exception ex)
             {
-                response.Failure(message: ex.Message, page: request.Page);
+                response.Failure(message: ex.Message);
             }
 
 

@@ -1,4 +1,5 @@
 ﻿using CongestionTaxCalculator.Domain.Entity;
+using CongestionTaxCalculator.Infrastructure.Enums;
 
 namespace CongestionTaxCalculator.Application.DTOs.City
 {

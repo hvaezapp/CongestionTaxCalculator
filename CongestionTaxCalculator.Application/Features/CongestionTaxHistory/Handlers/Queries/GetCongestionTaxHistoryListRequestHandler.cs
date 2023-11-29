@@ -59,9 +59,16 @@ namespace CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Hand
                 }
 
 
-                var data = _mapper.Map<List<GetCongestionTaxHistoryDto>>(congestionTaxHistories);
+                var congestionTaxHistoryDtos = _mapper.Map<List<GetCongestionTaxHistoryDto>>(congestionTaxHistories);
 
-                response.Success(data: data, page: request.Page);
+                var data = new GetCongestionTaxHistoryListWithPagingDto
+                {
+
+                    congestionTaxHistories = congestionTaxHistoryDtos,
+                    page = request.Page,
+                };
+
+                response.Success(data: data);
 
             }
 

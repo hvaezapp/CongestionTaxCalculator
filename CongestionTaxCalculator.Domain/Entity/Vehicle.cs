@@ -12,12 +12,19 @@ namespace CongestionTaxCalculator.Domain.Entity
         public Vehicle? ParentVehicle { get; set; }
 
 
+        // nav
+
+        public ICollection<CongestionTaxHistory> CongestionHistories { get; set; }
+        public ICollection<TaxExemptVehicles> TaxExemptVehicles { get; set; }
+
+
         public Vehicle()
         {
-
+            CongestionHistories = new List<CongestionTaxHistory>();
+            TaxExemptVehicles = new List<TaxExemptVehicles>();
         }
 
-        public Vehicle(string name , int parentId)
+        public Vehicle(string name , int parentId):this()
         {
             Name = name;
             ParentId = parentId;
@@ -34,10 +41,6 @@ namespace CongestionTaxCalculator.Domain.Entity
    
 
 
-        // nav
-
-        public ICollection<CongestionTaxHistory> CongestionHistories { get; set; }
-        public ICollection<TaxExemptVehicles> TaxExemptVehicles { get; set; }
 
 
     }

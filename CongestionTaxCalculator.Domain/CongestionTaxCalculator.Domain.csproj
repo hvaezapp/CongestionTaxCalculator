@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CongestionTaxCalculator.Infrastructure\CongestionTaxCalculator.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

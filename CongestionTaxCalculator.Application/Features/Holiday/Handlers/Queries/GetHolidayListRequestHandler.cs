@@ -57,16 +57,23 @@ namespace CongestionTaxCalculator.Application.Features.Holiday.Handlers.Queries
                 }
 
 
-                var data = _mapper.Map<List<HolidayDto>>(holidays);
+                var holidayDtos = _mapper.Map<List<HolidayDto>>(holidays);
 
-                response.Success(data: data, page: request.Page);
+                var data = new GetHolidayListWithPagingDto
+                {
+                    holidays = holidayDtos,
+                    page = request.Page,
+                };
+
+
+                response.Success(data: data);
 
 
 
             }
             catch (Exception ex)
             {
-                response.Failure(message: ex.Message, page: request.Page);
+                response.Failure(message: ex.Message);
             }
 
 
