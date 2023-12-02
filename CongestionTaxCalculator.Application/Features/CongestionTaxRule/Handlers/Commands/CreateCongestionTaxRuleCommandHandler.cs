@@ -68,7 +68,8 @@ namespace CongestionTaxCalculator.Application.Features.CongestionTaxRule.Handler
             }
             catch (Exception ex)
             {
-                response.Failure(message: ex.Message.ToString());
+                throw;
+                //response.Failure(message: ex.Message.ToString());
             }
 
             return response;

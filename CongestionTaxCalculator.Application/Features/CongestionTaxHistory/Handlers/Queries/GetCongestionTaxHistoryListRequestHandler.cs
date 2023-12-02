@@ -74,8 +74,8 @@ namespace CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Hand
 
             catch (Exception ex)
             {
-
-                response.Failure(ex.Message);
+                throw;
+                //response.Failure(ex.Message);
             }
 
             return response;

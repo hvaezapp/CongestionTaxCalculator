@@ -2,7 +2,7 @@ using CongestionTaxCalculator.Identity;
 using CongestionTaxCalculator.Application;
 using CongestionTaxCalculator.Persistence;
 using Microsoft.OpenApi.Models;
-
+using CongestionTaxCalculator.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +47,7 @@ app.UseApiVersioning();
 
 app.UseCors("CorsPolicy");
 
+app.UseCustomExceptionHandler();
 
 app.MapControllers();
 

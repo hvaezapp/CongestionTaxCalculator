@@ -73,7 +73,8 @@ namespace CongestionTaxCalculator.Application.Features.Holiday.Handlers.Queries
             }
             catch (Exception ex)
             {
-                response.Failure(message: ex.Message);
+                throw;
+                //response.Failure(message: ex.Message);
             }
 
 

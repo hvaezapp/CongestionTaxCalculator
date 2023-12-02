@@ -51,7 +51,8 @@ namespace CongestionTaxCalculator.Application.Features.Vehicle.Handlers.Commands
             }
             catch (Exception ex)
             {
-                response.Failure(message: ex.Message.ToString());
+                throw;
+                //response.Failure(message: ex.Message.ToString());
             }
 
             return response;

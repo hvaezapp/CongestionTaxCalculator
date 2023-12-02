@@ -45,27 +45,7 @@ namespace CongestionTaxCalculator.Api.Middlewares
                 httpStatusCode = exception.HttpStatusCode;
                 apiStatusCode = exception.ApiStatusCode;
 
-                //if (_env.IsDevelopment())
-                //{
-                //    var dic = new Dictionary<string, string>
-                //    {
-                //        ["Exception"] = exception.Message,
-                //        ["StackTrace"] = exception.StackTrace,
-                //    };
-                //    if (exception.InnerException != null)
-                //    {
-                //        dic.Add("InnerException.Exception", exception.InnerException.Message);
-                //        dic.Add("InnerException.StackTrace", exception.InnerException.StackTrace);
-                //    }
-                //    if (exception.AdditionalData != null)
-                //        dic.Add("AdditionalData", JsonConvert.SerializeObject(exception.AdditionalData));
-
-                //    message = JsonConvert.SerializeObject(dic);
-                //}
-                //else
-                //{
                 message = exception.Message;
-                //}
                 await WriteToResponseAsync();
             }
             catch (SecurityTokenExpiredException exception)

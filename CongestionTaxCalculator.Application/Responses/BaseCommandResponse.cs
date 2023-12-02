@@ -1,4 +1,5 @@
 ﻿using CongestionTaxCalculator.Infrastructure.Const;
+using CongestionTaxCalculator.Infrastructure.Utilities;
 
 namespace CongestionTaxCalculator.Application.Responses
 {
@@ -8,7 +9,8 @@ namespace CongestionTaxCalculator.Application.Responses
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
         public List<string> Errors { get; set; }
-       
+
+        public ApiResultStatusCode StatusCode { get; set; }
 
 
 
@@ -18,7 +20,9 @@ namespace CongestionTaxCalculator.Application.Responses
             Message = message ?? DefaultConst.Success;
             Errors = errors;
             Data = data;
-           
+            StatusCode = ApiResultStatusCode.ServerError;
+
+
         }
 
 
@@ -28,7 +32,8 @@ namespace CongestionTaxCalculator.Application.Responses
             Message = message ?? DefaultConst.Failure;
             Errors = errors;
             Data = data;
-            
+            StatusCode = ApiResultStatusCode.Success;
+
         }
 
     }

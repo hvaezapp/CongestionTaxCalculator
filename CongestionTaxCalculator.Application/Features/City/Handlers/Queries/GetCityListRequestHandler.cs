@@ -81,7 +81,8 @@ namespace CongestionTaxCalculator.Application.Features.City.Handlers.Queries
             }
             catch (Exception ex)
             {
-                response.Failure(message: ex.Message);
+                throw;
+                //response.Failure(message: ex.Message);
             }
 
 

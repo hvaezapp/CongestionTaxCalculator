@@ -1,4 +1,5 @@
 ﻿using CongestionTaxCalculator.Application.Responses;
+using CongestionTaxCalculator.Domain.Entity;
 using MediatR;
 
 namespace CongestionTaxCalculator.Application.Features.CongestionTaxRule.Requests.Queries
@@ -6,5 +7,6 @@ namespace CongestionTaxCalculator.Application.Features.CongestionTaxRule.Request
     public class GetCongestionTaxByCityRequest : IRequest<BaseCommandResponse>
     {
         public int CityId { get; set; }
+
     }
 }
