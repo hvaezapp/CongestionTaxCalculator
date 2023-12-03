@@ -1,40 +1,41 @@
 ﻿using CongestionTaxCalculator.Api.Controllers.v1;
-using CongestionTaxCalculator.Application.DTOs.CongestionTaxHistory;
-using CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Requests.Commands;
-using CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Requests.Queries;
+using CongestionTaxCalculator.Application.DTOs.TaxExemptVehicles;
+using CongestionTaxCalculator.Application.Features.TaxExemptVehicles.Requests.Commands;
+using CongestionTaxCalculator.Application.Features.TaxExemptVehicles.Requests.Queries;
 using CongestionTaxCalculator.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace CTCTestProject.WebApiTests
+namespace CTC_Test.UnitTest.WebApiTests
 {
-    public class CongestionTaxHistoryControllerTests
+    public class TaxExemptVehiclesControllerUnitTests
     {
-        private readonly CongestionTaxHistoryController _controller;
+        private readonly TaxExemptVehiclesController _controller;
         private readonly Mock<IMediator> _mediatorMock;
 
 
-        public CongestionTaxHistoryControllerTests()
+
+        public TaxExemptVehiclesControllerUnitTests()
         {
 
             _mediatorMock = new Mock<IMediator>();
-            _controller = new CongestionTaxHistoryController(_mediatorMock.Object);
+            _controller = new TaxExemptVehiclesController(_mediatorMock.Object);
+
 
         }
 
 
         [Fact]
-        public async Task GetAll_ShouldReturnCongestionTaxHistory()
+        public async Task GetAll_ShouldReturnListOfTaxExemptVehicles()
         {
             // Arrange
-
             var page = 1;
             var cancellationToken = CancellationToken.None;
 
 
             var expectedResponse = new BaseCommandResponse();
-            _mediatorMock.Setup(m => m.Send(It.IsAny<GetCongestionTaxHistoryListRequest>(), cancellationToken))
+            _mediatorMock.Setup(m => m.Send(It.IsAny<GetTaxExemptVehiclesListRequest>(), cancellationToken))
                         .ReturnsAsync(expectedResponse);
 
             // Act
@@ -47,25 +48,28 @@ namespace CTCTestProject.WebApiTests
             Assert.NotNull(okResult);
             Assert.Equal(200, okResult.StatusCode);
 
+
             Assert.NotNull(model);
             Assert.Same(expectedResponse, model);
+
         }
 
         [Fact]
-        public async Task Create_ShouldCreateCongestionTaxHistory()
+        public async Task Create_ShouldCreateTaxExemptVehicle()
         {
             // Arrange
-
-            var createCongestionTaxHistoryDto = new CreateCongestionTaxHistoryDto(1, 1, new());
+            var mediatorMock = new Mock<IMediator>();
+            var controller = new TaxExemptVehiclesController(mediatorMock.Object);
+            var createTaxExemptVehiclesDto = new CreateTaxExemptVehiclesDto(1, 1);
             var cancellationToken = CancellationToken.None;
 
 
             var expectedResponse = new BaseCommandResponse();
-            _mediatorMock.Setup(m => m.Send(It.IsAny<CreateCongestionTaxHistoryCommand>(), cancellationToken))
+            mediatorMock.Setup(m => m.Send(It.IsAny<CreateTaxExemptVehiclesCommand>(), cancellationToken))
                         .ReturnsAsync(expectedResponse);
 
             // Act
-            var result = await _controller.Create(createCongestionTaxHistoryDto, cancellationToken);
+            var result = await controller.Create(createTaxExemptVehiclesDto, cancellationToken);
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
@@ -74,8 +78,10 @@ namespace CTCTestProject.WebApiTests
             Assert.NotNull(okResult);
             Assert.Equal(200, okResult.StatusCode);
 
+
             Assert.NotNull(model);
             Assert.Same(expectedResponse, model);
+
         }
     }
 }

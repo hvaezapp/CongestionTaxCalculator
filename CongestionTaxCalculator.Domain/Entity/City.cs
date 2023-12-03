@@ -1,6 +1,7 @@
 ﻿using CongestionTaxCalculator.Domain.Common;
 using CongestionTaxCalculator.Infrastructure.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CongestionTaxCalculator.Domain.Entity
 {
@@ -27,9 +28,13 @@ namespace CongestionTaxCalculator.Domain.Entity
         public CurrencyType CurrencyType { get; set; }
 
 
+        [NotMapped]
         public ICollection<CongestionTaxHistory> congestionTaxHistories { get; set; }
+
+        [NotMapped]
         public ICollection<CongestionTaxRule>  congestionTaxRules { get; set; }
 
+        [NotMapped]
         public ICollection<TaxExemptVehicles> taxExemptVehicles { get; set; }
 
         public City()

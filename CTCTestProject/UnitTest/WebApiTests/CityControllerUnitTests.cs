@@ -6,15 +6,16 @@ using CongestionTaxCalculator.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using CongestionTaxCalculator.Infrastructure.Enums;
 
-namespace CTCTestProject.WebApiTests
+namespace CTC_Test.UnitTest.WebApiTests
 {
-    public class CityControllerTests
+    public class CityControllerUnitTests
     {
         private readonly CityController _controller;
         private readonly Mock<IMediator> _mediatorMock;
 
-        public CityControllerTests()
+        public CityControllerUnitTests()
         {
 
             _mediatorMock = new Mock<IMediator>();
@@ -83,8 +84,11 @@ namespace CTCTestProject.WebApiTests
         public async Task Create_ShouldCreateCity()
         {
             // Arrange
+            // Initialize DTO with data
+            var createCityDto = new CreateCityDto("Usa", true, false, true,
+                                        true, false, false, 50,
+                                        CurrencyType.DOLLAR);
 
-            var createCityDto = new CreateCityDto("Usa", true, false, true, true, false, false, 50, CongestionTaxCalculator.Infrastructure.Enums.CurrencyType.DOLLAR); // Initialize DTO with data
             var cancellationToken = CancellationToken.None;
 
 

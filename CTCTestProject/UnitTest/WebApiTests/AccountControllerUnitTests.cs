@@ -4,14 +4,14 @@ using CongestionTaxCalculator.Application.Models.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace CTCTestProject.WebApiTests
+namespace CTC_Test.UnitTest.WebApiTests
 {
-    public class AccountControllerTests
+    public class AccountControllerUnitTests
     {
         private readonly Mock<IAuthService> authServiceMock;
         private readonly AccountController controller;
 
-        public AccountControllerTests()
+        public AccountControllerUnitTests()
         {
             authServiceMock = new Mock<IAuthService>();
             controller = new AccountController(authServiceMock.Object);

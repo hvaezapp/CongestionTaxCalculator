@@ -14,13 +14,21 @@ namespace CongestionTaxCalculator.Application.Responses
 
 
 
+        public BaseCommandResponse()
+        {
+            IsSuccess = true;
+            Message = DefaultConst.Success;
+            StatusCode = ApiResultStatusCode.Success;
+        }
+
+
         public void Success(object data = null , string message = null, List<string> errors = null)
         {
             IsSuccess = true;
             Message = message ?? DefaultConst.Success;
             Errors = errors;
             Data = data;
-            StatusCode = ApiResultStatusCode.ServerError;
+            StatusCode = ApiResultStatusCode.Success;
 
 
         }
@@ -32,7 +40,7 @@ namespace CongestionTaxCalculator.Application.Responses
             Message = message ?? DefaultConst.Failure;
             Errors = errors;
             Data = data;
-            StatusCode = ApiResultStatusCode.Success;
+            StatusCode = ApiResultStatusCode.ServerError;
 
         }
 

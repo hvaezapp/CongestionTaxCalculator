@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using CongestionTaxCalculator.Application.Contracts.Persistence;
 using CongestionTaxCalculator.Application.DTOs.CongestionTaxRule;
+using CongestionTaxCalculator.Application.DTOs.Vehicle;
 using CongestionTaxCalculator.Application.Features.CongestionTaxRule.Requests.Queries;
 using CongestionTaxCalculator.Application.Responses;
+using CongestionTaxCalculator.Domain.Entity;
 using CongestionTaxCalculator.Infrastructure.Const;
+using CongestionTaxCalculator.Infrastructure.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -35,14 +38,21 @@ namespace CongestionTaxCalculator.Application.Features.CongestionTaxRule.Handler
             {
                 var congestionTaxRules = await _congestionTaxRuleRepository.GetAsync(a=>a.CityId == request.CityId, null, "City", cancellationToken);
 
-                if (congestionTaxRules.Any())
-                {
-                    var data = _mapper.Map<List<CongestionTaxRuleDto>>(congestionTaxRules);
-                    response.Success(data: data);
+                //if (congestionTaxRules == null)
+                //    throw new AppException(DefaultConst.NotFound);
 
-                }
-                else
-                    response.Failure(message: DefaultConst.NotFound);
+                var data = _mapper.Map<List<CongestionTaxRuleDto>>(congestionTaxRules);
+                response.Success(data: data);
+
+
+                //if (congestionTaxRules.Any())
+                //{
+                //    var data = _mapper.Map<List<CongestionTaxRuleDto>>(congestionTaxRules);
+                //    response.Success(data: data);
+
+                //}
+                //else
+                //    response.Failure(message: DefaultConst.NotFound);
 
 
 

@@ -4,6 +4,7 @@ using CongestionTaxCalculator.Application.DTOs.City;
 using CongestionTaxCalculator.Application.Features.City.Requests.Queries;
 using CongestionTaxCalculator.Application.Responses;
 using CongestionTaxCalculator.Infrastructure.Const;
+using CongestionTaxCalculator.Infrastructure.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Caching.Memory;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -40,20 +41,18 @@ namespace CongestionTaxCalculator.Application.Features.City.Handlers.Queries
                 
                 var city = await _cityRepository.GetByIdAsync(request.CityId, cancellationToken);
 
-                if (city is not null)
+                if (city != null)
                 {
                     var data = _mapper.Map<CityDto>(city);
                     response.Success(data: data);
-
-                }else
-                    response.Failure(message: DefaultConst.NotFound);
+                }
 
 
 
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
                 // response.Failure(message: ex.Message);

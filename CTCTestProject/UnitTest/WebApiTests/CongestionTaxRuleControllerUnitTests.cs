@@ -7,16 +7,16 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace CTCTestProject.WebApiTests
+namespace CTC_Test.UnitTest.WebApiTests
 {
-    public class CongestionTaxRuleControllerTests
+    public class CongestionTaxRuleControllerUnitTests
     {
 
         private readonly CongestionTaxRuleController _controller;
         private readonly Mock<IMediator> _mediatorMock;
 
 
-        public CongestionTaxRuleControllerTests()
+        public CongestionTaxRuleControllerUnitTests()
         {
 
             _mediatorMock = new Mock<IMediator>();

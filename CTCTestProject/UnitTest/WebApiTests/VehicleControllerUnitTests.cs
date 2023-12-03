@@ -8,21 +8,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace CTCTestProject.WebApiTests
+namespace CTC_Test.UnitTest.WebApiTests
 {
-    public class VehicleControllerTests
+    public class VehicleControllerUnitTests
     {
         private readonly VehicleController _controller;
         private readonly Mock<IMediator> _mediatorMock;
 
-        private readonly ILogger<VehicleControllerTests> _logger;
+        private readonly ILogger<VehicleControllerUnitTests> _logger;
 
-        public VehicleControllerTests()
+        public VehicleControllerUnitTests()
         {
 
             _mediatorMock = new Mock<IMediator>();
             _controller = new VehicleController(_mediatorMock.Object);
-            _logger = new LoggerFactory().CreateLogger<VehicleControllerTests>();
+            _logger = new LoggerFactory().CreateLogger<VehicleControllerUnitTests>();
 
         }
 

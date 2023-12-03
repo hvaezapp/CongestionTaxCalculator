@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CongestionTaxCalculator.Api
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{822CC7A7-89AF-463D-814A-B8D7097FFC5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTCTestProject", "CTCTestProject\CTCTestProject.csproj", "{B2155E6A-13AD-48CD-A664-8043437A76C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTC_Test", "CTCTestProject\CTC_Test.csproj", "{B2155E6A-13AD-48CD-A664-8043437A76C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

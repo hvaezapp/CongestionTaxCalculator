@@ -82,7 +82,7 @@ namespace CongestionTaxCalculator.Application.Features.Vehicle.Handlers.Queries
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
                 //response.Failure(message : ex.Message);

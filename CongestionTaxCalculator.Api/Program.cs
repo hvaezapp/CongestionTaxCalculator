@@ -53,6 +53,9 @@ app.MapControllers();
 
 app.Run();
 
+
+
+
 void AddSwagger(IServiceCollection services)
 {
     services.AddSwaggerGen(o =>
@@ -94,3 +97,6 @@ void AddSwagger(IServiceCollection services)
 
     });
 }
+
+
+public partial class Program { }

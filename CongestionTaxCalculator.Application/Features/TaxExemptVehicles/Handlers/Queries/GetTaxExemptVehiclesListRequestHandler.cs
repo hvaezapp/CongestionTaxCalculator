@@ -70,7 +70,7 @@ namespace CongestionTaxCalculator.Application.Features.TaxExemptVehicles.Handler
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
                 //response.Failure(message: ex.Message);

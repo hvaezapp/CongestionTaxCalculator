@@ -6,6 +6,7 @@ using CongestionTaxCalculator.Application.Features.Vehicle.Requests.Queries;
 using CongestionTaxCalculator.Application.Responses;
 using CongestionTaxCalculator.Domain.Entity;
 using CongestionTaxCalculator.Infrastructure.Const;
+using CongestionTaxCalculator.Infrastructure.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -41,16 +42,24 @@ namespace CongestionTaxCalculator.Application.Features.Vehicle.Handlers.Queries
 
                 var vehicle = await _vehicleRepository.GetByIdAsync(request.VehicleId, cancellationToken);
 
-                if (vehicle is not null)
+                if (vehicle != null)
                 {
                     var data = _mapper.Map<VehicleDto>(vehicle);
                     response.Success(data: data);
                 }
-                else
-                    response.Failure(message:DefaultConst.NotFound);
 
-            }
-            catch (Exception ex)
+
+
+                    //if (vehicle is not null)
+                    //{
+                    //    var data = _mapper.Map<VehicleDto>(vehicle);
+                    //    response.Success(data: data);
+                    //}
+                    //else
+                    //    response.Failure(message:DefaultConst.NotFound);
+
+                }
+            catch (Exception)
             {
                 throw;
                 //response.Failure(message : ex.Message);

@@ -126,7 +126,8 @@ namespace CongestionTaxCalculator.Application.Features.CongestionTaxHistory.Hand
 
 
                         // get tax from city created values
-                        taxAmount = congestionTaxValue.TaxAmount;
+                        if(congestionTaxValue != null)
+                             taxAmount = congestionTaxValue.TaxAmount;
 
 
 

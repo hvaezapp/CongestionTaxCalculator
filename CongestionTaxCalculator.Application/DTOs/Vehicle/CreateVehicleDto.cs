@@ -2,5 +2,5 @@
 
 namespace CongestionTaxCalculator.Application.DTOs.Vehicle
 {
-    public record CreateVehicleDto(string Name, int? ParentId);
+    public record CreateVehicleDto(string Name, int? ParentId=null);
 }

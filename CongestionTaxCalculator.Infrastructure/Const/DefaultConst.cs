@@ -9,9 +9,10 @@
 
         public const string Failure = "Operation Failure";
         public const string Success = "Operation Success";
-        public const string NotFound = "NotFound! Operation Failure";
+        public const string NotFound = "NotFound!";
+        public const string ApiBaseUrl = "http://localhost:5240/api/v1/";
 
-      
+
 
 
 
