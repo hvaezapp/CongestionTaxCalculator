@@ -14,6 +14,7 @@ namespace CongestionTaxCalculator.Api.Controllers.v1
             this.authService = authService;
         }
 
+
         [HttpPost("[action]")]
         public async Task<ActionResult<AuthResponse>> Login(AuthRequest request)
         {

@@ -9,6 +9,7 @@ namespace CongestionTaxCalculator.Application.Models.Identity
     {
         [Required]
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
         [Required]
