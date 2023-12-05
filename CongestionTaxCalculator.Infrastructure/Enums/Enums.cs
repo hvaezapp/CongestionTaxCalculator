@@ -17,6 +17,9 @@ namespace CongestionTaxCalculator.Infrastructure.Enums
         [Display(Name = "DOLLAR")]
         DOLLAR,
         [Display(Name = "LIR")]
-        LIR
+        LIR,
+        [Display(Name = "CAD")]
+        CAD
+
     }
 }
